@@ -1,0 +1,14 @@
+template:
+    directory: .
+
+title: Kouskous
+
+menu:
+    items:
+        home:
+            text: Kouskous
+            relativeUrl:
+        test:
+            text: by Kitpages
+            absoluteUrl: http://www.kitpages.fr/
+

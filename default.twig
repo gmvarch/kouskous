@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>{{ title }}</title>
+
+        <link rel="stylesheet" href="{{ baseUrl }}/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{ baseUrl }}/css/prism.css">
+        <style type="text/css">
+            body { padding-top: 70px; }
+
+            #content > h1:first-child {
+                margin-top: 0px;
+            }
+
+            main {
+                margin-bottom: 50px;
+            }
+        </style>
+    </head>
+    <body>
+
+        <header class="navbar navbar-default navbar-fixed-top">
+            <a class="navbar-brand" href="{{ baseUrl }}/">
+                {{ title|default('The title') }}
+            </a>
+        </header>
+
+        <main class="{{ menu ? 'container-fluid' : 'container' }}">
+            <div class="row">
+
+                {% if menu is defined %}
+
+                    <nav id="sidebar" class="col-sm-3 col-lg-2" role="navigation">
+
+                        <ul class="nav nav-pills nav-stacked">
+                            {% for itemId, item in menu.items %}
+                                <li>
+                                    <a href="{{ item.absoluteUrl|default(baseUrl ~ '/' ~ item.relativeUrl) }}">
+                                        {{ item.text|raw }}
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+
+                    </nav>
+
+                {% endif %}
+
+                <section id="content" class="{{ menu ? 'col-sm-9 col-lg-10' : 'col-sm-12' }}">
+                    {{ content|raw }}
+                </section>
+
+            </div>
+        </main>
+
+        <script type="text/javascript" src="{{ baseUrl }}/js/prism.js"></script>
+        <script type="text/javascript" src="{{ baseUrl }}/js/raphael-min.js"></script>
+        <script type="text/javascript" src="{{ baseUrl }}/js/flowchart-latest.js"></script>
+        <script type="text/javascript" src="{{ baseUrl }}/js/underscore-min.js"></script>
+        <script type="text/javascript" src="{{ baseUrl }}/js/sequence-diagram-min.js"></script>
+        <script type="text/javascript" src="{{ baseUrl }}/js/main.js"></script>
+    </body>
+</html>
