@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
     Array.prototype.forEach.call(document.querySelectorAll("#sidebar li"), function (el, i) {
         var linkHref = el.querySelectorAll('a')[0].getAttribute('href');
-        if ((linkHref == '/' && currentUri == '/') || currentUri.substr(0, linkHref.length) == linkHref) {
+        if (linkHref == currentUri) {
             el.className += ' active';
         }
     });
