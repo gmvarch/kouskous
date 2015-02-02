@@ -1,15 +1,18 @@
 document.addEventListener('DOMContentLoaded', function(){
 
     // Update document title
-    document.title = document.getElementsByTagName('h1')[0].innerHTML + ' | ' + document.title;
+    if (document.getElementsByTagName('h1').length > 0)
+    {
+        document.title = document.getElementsByTagName('h1')[0].innerHTML + ' | ' + document.title;
+    }
 
     // Activate current menu
     var currentUri = document.location.pathname;
 
-    Array.prototype.forEach.call(document.querySelectorAll("#sidebar > .nav > li"), function (el, i) {
+    Array.prototype.forEach.call(document.querySelectorAll("#sidebar li"), function (el, i) {
         var linkHref = el.querySelectorAll('a')[0].getAttribute('href');
         if ((linkHref == '/' && currentUri == '/') || currentUri.substr(0, linkHref.length) == linkHref) {
-            el.className += 'active';
+            el.className += ' active';
         }
     });
 

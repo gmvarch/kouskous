@@ -8,7 +8,7 @@ Based on [Template Light](https://github.com/CouscousPHP/Template-Light)
 Screenshot
 ----------
 
-![](screenshot.png)
+![](/screenshot.png)
 
 Usage
 -----
@@ -34,13 +34,23 @@ title: My project
 menu:
     items:
         home:
-            text: Home page
-            # You can use relative urls
-            relativeUrl: doc/faq.html
-        foo:
-            text: Another link
-            # Or absolute urls
-            absoluteUrl: https://example.com
+            text: Kouskous
+            menu:
+                kitpages:
+                    text: by Kitpages
+                    absoluteUrl: http://www.kitpages.fr/
+        menu1:
+            text: Menu 1
+            menu:
+                item1:
+                    text: <i class="glyphicon glyphicon-chevron-right"></i> Item 1
+                    absoluteUrl: http://www.kitpages.fr/
+                item2:
+                    text: <i class="glyphicon glyphicon-link"></i> Item 2
+                    absoluteUrl: http://www.kitpages.fr/
+                item3:
+                    text: Item 3
+                    absoluteUrl: http://www.kitpages.fr/
 ```
 
 

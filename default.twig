@@ -15,6 +15,16 @@
                 margin-top: 0px;
             }
 
+            li.list-group-item a
+            {
+                display: block;
+            }
+
+            li.list-group-item.active a
+            {
+                color: #fff;
+            }
+
             main {
                 margin-bottom: 50px;
             }
@@ -32,19 +42,34 @@
             <div class="row">
 
                 {% if menu is defined %}
-
                     <nav id="sidebar" class="col-sm-3 col-lg-2" role="navigation">
 
-                        <ul class="nav nav-pills nav-stacked">
+                    <div class="panel-group" role="tablist">
                             {% for itemId, item in menu.items %}
-                                <li>
-                                    <a href="{{ item.absoluteUrl|default(baseUrl ~ '/' ~ item.relativeUrl) }}">
-                                        {{ item.text|raw }}
-                                    </a>
-                                </li>
+                            <div class="panel panel-default">
+                              <div class="panel-heading" id="collapseListGroupHeading{{loop.index}}">
+                                <h4 class="panel-title">
+                                  <a data-toggle="collapse" href="#collapseListGroup{{loop.index}}" aria-controls="collapseListGroup{{loop.index}}">
+                                    {{ item.text }}
+                                  </a>
+                                </h4>
+                              </div>
+                              <div id="collapseListGroup{{loop.index}}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="collapseListGroupHeading{{loop.index}}">
+                                <ul class="list-group">
+                                  {% if item.menu is defined %}
+                                    {% for subItemId, subItem in item.menu %}
+                                    <li class="list-group-item">
+                                        <a href="{{ subItem.absoluteUrl|default(baseUrl ~ '/' ~ subItem.relativeUrl) }}">
+                                            {{ subItem.text|raw }}
+                                        </a>
+                                    </li>
+                                    {% endfor %}
+                                    {% endif %}
+                                </ul>
+                              </div>
+                            </div>
                             {% endfor %}
-                        </ul>
-
+                      </div>
                     </nav>
 
                 {% endif %}
@@ -56,11 +81,13 @@
             </div>
         </main>
 
+        <script type="text/javascript" src="{{ baseUrl }}/js/jquery-2.1.3.min.js"></script>
         <script type="text/javascript" src="{{ baseUrl }}/js/prism.js"></script>
         <script type="text/javascript" src="{{ baseUrl }}/js/raphael-min.js"></script>
         <script type="text/javascript" src="{{ baseUrl }}/js/flowchart-latest.js"></script>
         <script type="text/javascript" src="{{ baseUrl }}/js/underscore-min.js"></script>
         <script type="text/javascript" src="{{ baseUrl }}/js/sequence-diagram-min.js"></script>
+        <script type="text/javascript" src="{{ baseUrl }}/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="{{ baseUrl }}/js/main.js"></script>
     </body>
 </html>
